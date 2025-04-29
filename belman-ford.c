@@ -22,7 +22,7 @@ int convert_dimension_2D_1D(int x, int y, int n) {
 }
 
 int print_result(bool has_negative_cycle, int *dist) {
-    FILE *outputf = fopen("output.txt", "w");
+    FILE *outputf = fopen("output_old.txt", "w");
     if (!outputf) {
         perror("Failed to open output file");
         return -1;
@@ -126,6 +126,7 @@ void bellman_ford(int my_rank, int p, MPI_Comm comm, int n, int *mat, int *dist,
 
     //step 4: broadcast matrix mat
     if (my_rank == 0)
+        // loc_mat = mat;
         memcpy(loc_mat, mat, sizeof(int) * loc_n * loc_n);
     MPI_Bcast(loc_mat, loc_n * loc_n, MPI_INT, 0, comm);
 
@@ -197,6 +198,10 @@ void bellman_ford(int my_rank, int p, MPI_Comm comm, int n, int *mat, int *dist,
         memcpy(dist, loc_dist, loc_n * sizeof(int));
 
     //step 7: remember to free memory
+    // if(my_rank != 0) {
+    //     free(loc_mat);
+    // }
+
     free(loc_mat);
     free(loc_dist);
 
