@@ -8,10 +8,10 @@ max_weight = 200
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        size = int(sys.argv[1])  # First argument (index 1)
+        size = int(sys.argv[1])
 
     if len(sys.argv) > 2:
-        propability = float(sys.argv[1])  # First argument (index 1)
+        propability = float(sys.argv[2])
 
     for i in range(size):
         adj_list.append([])
