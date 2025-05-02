@@ -3,6 +3,7 @@
 Parallel Bellman-Ford
 
 ```bash
+export MPICH_TARGET_DIR=/opt/nfs/mpich-4.2.0
 cd build
 cmake ..
 make
