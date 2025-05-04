@@ -12,7 +12,7 @@ void abort_with_error_message(const char* msg) {
 }
 
 int print_result(bool has_negative_cycle, int *dist, int* path, int dest) {
-    FILE *outputf = fopen("./output/output_newest.txt", "w");
+    FILE *outputf = fopen("output.txt", "w");
     if (!outputf) {
         perror("Failed to open output file");
         return -1;
@@ -280,8 +280,8 @@ void bellman_ford(int my_rank, int p, MPI_Comm comm, int n, Graph* graph, int *d
 }
 
 int main(int argc, char **argv) {
-    if (argc <= 2) {
-        abort_with_error_message("INPUT FILE WAS NOT FOUND!");
+    if (argc <= 3) {
+        abort_with_error_message("not enough number of input arguments!");
     }
 
     char* filename = argv[1];
